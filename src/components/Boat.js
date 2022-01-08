@@ -28,7 +28,10 @@ const Boat = () => {
     }
 
 
-
+    const deletedata = async (event) => {
+        const boatId = event.target.id
+        await axios.delete(URL + '/boat/' + boatId)
+    }
 
     return (
 
@@ -45,11 +48,18 @@ const Boat = () => {
                         <th>Image</th>
                         <th>Make</th>
                         <th>Name</th>
+                        <th>Delete</th>
                         <th>Harbour Id</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {boats.map((boat) => (<tr key={boat.id}><td>{boat.id}</td><td>{boat.brand}</td><td>{boat.make}</td><td>{boat.name}</td><td>{boat.image}</td></tr>))}
+                    {boats.map((boat) => (<tr key={boat.id}>
+                    <td>{boat.id}</td>
+                    <td>{boat.brand}</td>
+                    <td>{boat.make}</td>
+                    <td>{boat.name}</td>
+                    <td>{boat.image}</td>
+                    <td><button className="btn btn-danger" id={boat.id} onClick={deletedata}>Delete</button></td></tr>))}
                 </tbody>
             </table>
 
@@ -58,7 +68,7 @@ const Boat = () => {
                     <input placeholder="brand" id="brand" />
                     <input placeholder="image" id="image" />
                     <input placeholder="make" id="make" />
-                    <input placeholder="name" id="name" />
+                    <input placeholder="name" id="name"  />
                 </form>
                 <button className="btn btn-success" onClick={createBoat}>Create boat</button>
             </div>
