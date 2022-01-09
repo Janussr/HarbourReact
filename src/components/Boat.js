@@ -69,7 +69,7 @@ const Boat = () => {
                     <input placeholder="image" id="image" />
                     <input placeholder="make" id="make" />
                     <input placeholder="name" id="name"  />
-                </form>
+                </form>   
                 <button className="btn btn-success" onClick={createBoat}>Create boat</button>
             </div>
 
