@@ -10,6 +10,9 @@ import Admin from './components/Admin';
 import NoMatch from './components/NoMatch';
 import Owner from './components/Owner';
 import Boat from './components/Boat';
+import Harbour from './components/Harbour';
+import HarbourContent from './components/HarbourContent';
+import OwnerContent from './components/OwnerContent';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -27,6 +30,9 @@ function App() {
         <Route path='*' element={<NoMatch />} />
         <Route path='owner' element={<Owner />} />
         <Route path='boat' element={<Boat />} />
+        <Route path='harbour' element={<Harbour />} />
+        <Route path='harbour/:id' element={<HarbourContent />} />
+        <Route path='ownercontent/:id' element={<OwnerContent />} />
       </Routes>
     </div >
   );

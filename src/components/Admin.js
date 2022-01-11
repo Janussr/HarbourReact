@@ -10,6 +10,10 @@ const Admin = ({ currentRoles }) => {
     navigate('/boat')
   }
 
+  const viewHarbours = () => {
+    navigate('/harbour')
+  }
+
 
   return (
     <div>
@@ -19,6 +23,7 @@ const Admin = ({ currentRoles }) => {
       <div className="center">
   
       <button className="btn btn-success m-1 " onClick={viewBoats}>See & Create Boats</button> 
+      <button className="btn btn-success m-1 " onClick={viewHarbours}>See Harbours</button> 
       </div>
 
 
