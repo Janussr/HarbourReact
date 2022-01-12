@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState, useEffect } from "react"
 import apiUtils from "../utils/apiUtils";
 import { NavLink } from "react-router-dom"

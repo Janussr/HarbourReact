@@ -8,14 +8,11 @@ const Boat = () => {
 
     const [boats, setBoats] = useState([]);
     const [boat, setBoat] = useState({ brand: "", image: "", make: "", name: "", harbourId: {id: 0} });
-
+    const [harbours, setHarbours] = useState([]);
 
     const handleInput = (event) => {
         setBoat({ ...boat, [event.target.id]: event.target.value })
     }
-
-  
-
 
     const createBoat = async () => {
        await axios.post(URL + "/boat/create", {
@@ -24,10 +21,8 @@ const Boat = () => {
         name: boat.name,
         image: boat.image,
         harbour: { id: boat.id }
-
-
-        
       })
+
       //Fetch again in the function in order to re render the website(so it doesnt spam in network)
       const response = await apiUtils.getAuthAxios().get(URL + '/boat/all')
       setBoats(response.data.boats)
@@ -42,6 +37,14 @@ const Boat = () => {
         const response = await apiUtils.getAuthAxios().get(URL + '/boat/all')
             setBoats(response.data.boats)
     }
+
+    useEffect(() => {
+        const getHarbourId = async () => {
+            const response = await apiUtils.getAuthAxios().get(URL + '/harbour/all')
+            setHarbours(response.data.boats)
+        }
+        getHarbourId()
+    }, [URL]);
 
 
     useEffect(() => {
@@ -69,6 +72,7 @@ const Boat = () => {
                         <th>Name</th>
                         <th>Harbour Id</th>
                         <th>See Boat Owner</th>
+                        <th>Change harbour</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
@@ -79,10 +83,12 @@ const Boat = () => {
                     <td>{boat.make}</td>
                     <td>{boat.name}</td>
                     <td>{boat.image}</td>
-                    <td>{boat.harbourId}</td>
+                    <td>{boat.harbour.id}</td>
                     <td><NavLink to={`/ownercontent/${boat.id}`}><button className="btn btn-primary">See owners</button></NavLink></td>
+                    <td><NavLink to={`/boatswapharbour/${boat.id}`}><button className="btn btn-primary">change harbour</button></NavLink></td>
                     <td><button className="btn btn-danger" id={boat.id} onClick={deletedata}>Delete</button></td></tr>))}
-                    
+
+
                 </tbody>
             </table>
 
@@ -97,7 +103,7 @@ const Boat = () => {
                 <button className="btn btn-success" onClick={createBoat}>Create boat</button>
             </div>
 
-
+         
 
         </div>
     )

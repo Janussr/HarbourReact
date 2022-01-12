@@ -2,7 +2,6 @@ import { useParams } from "react-router"
 import { useState, useEffect } from "react"
 import axios from "axios"
 import apiUtils from "../utils/apiUtils"
-import { NavLink } from "react-router-dom"
 
 const OwnerContent = () => {
     const [owners, setOwners] = useState([]);
